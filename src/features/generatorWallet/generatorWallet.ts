@@ -145,17 +145,3 @@ export class VanityWalletGenerator extends BasicWalletImplementation {
     return addressWithoutPrefix.endsWith(this._requiredSuffix as string);
   }
 }
-
-function generatorVanityWallets() {
-  // 前缀地址标识
-  const generatePrefix = "1314";
-
-  // VanityWalletGenerator(generatePrefix, undefined) [前缀, 后缀]
-  // 如果是要后缀就是：VanityWalletGenerator(undefined，generatePrefix)
-  const wallets = new VanityWalletGenerator(generatePrefix, undefined).generateVanityWallets(2);
-  wallets.forEach((wallet, index) => {
-    // TODO: 实现hook逻辑
-    console.log(`Wallet ${index + 1}:`);
-    console.log(wallet);
-  });
-}
