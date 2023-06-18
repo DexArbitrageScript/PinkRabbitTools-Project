@@ -55,9 +55,9 @@ export class GasTracker {
     constructor() {
         this.Api = 'https://api.etherscan.io/api';
         this.ApiKeys = [
-            'XGDR33WTXYGKMP3HSCXWR7QBQAF2KP2AIJ', 
-            'WQPUG453DZCXNKMABD4TST3C5X7Y2GIA14', 
-            'ISUR68P67SY564Y3MK4SJMQEQF7YGNQ773'
+            'x', 
+            'x', 
+            'x'
         ];
         this.Provider = new ethers.providers.JsonRpcBatchProvider('https://eth.llamarpc.com');
         this.ApiCoinPrice = 'https://api.coingecko.com/api/v3/simple/price';
