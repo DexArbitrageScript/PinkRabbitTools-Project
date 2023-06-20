@@ -8,13 +8,17 @@ export interface gasPrices {
 
 // default provider rpc;
 const httpProviders = {
-  ////////////////////////tt
+  ////////////////////////
   // Eth
   '1':      new ethers.providers.JsonRpcProvider('https://eth.llamarpc.com'),
 
   ////////////////////////
   // Goerli
   '5':      new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth_goerli'),
+
+  ////////////////////////
+  // Bsc
+  '56':     new ethers.providers.JsonRpcProvider('https://bsc-dataseed3.binance.org'),
 
   //////////////////////// 
   // Polygon
@@ -45,13 +49,12 @@ async function httpGetGasPrice(chainId: string): Promise<gasPrices> {
       const fastGwei = ethers.utils.formatUnits(fast, 'gwei');
 
       const prices: gasPrices = {
-        slowGasGwei:      slowGwei,
-        standardGasGwei:  standardGwei,
-        fastGasGwei:      fastGwei,
+        slowGasGwei:      Math.floor(Number(slowGwei)).toString(),
+        standardGasGwei:  Math.floor(Number(standardGwei)).toString(),
+        fastGasGwei:      Math.floor(Number(fastGwei)).toString(),
       }
       return prices;
   } catch (error) {
     throw new Error("Failed to fetch the gasPrice data");
   }
 }
-
