@@ -32,7 +32,7 @@ const units = {
   tether: '1000000000000000000000000000000',
 };
 
-function convertUnits(value: string, fromUnit: keyof typeof units) {
+export function convertUnits(value: string, fromUnit: keyof typeof units) {
   const result: Record<keyof typeof units, string> = {
         wei: "",
         kwei: "",
