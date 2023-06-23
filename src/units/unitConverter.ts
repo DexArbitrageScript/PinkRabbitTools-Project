@@ -2,7 +2,7 @@ import { BigNumber } from 'bignumber.js';
 
 BigNumber.set({ DECIMAL_PLACES: 30 });
 
-const units = {
+const AllUnits = {
   wei: '1',
   kwei: '1000',
   Kwei: '1000',
@@ -32,8 +32,10 @@ const units = {
   tether: '1000000000000000000000000000000',
 };
 
-export function convertUnits(value: string, fromUnit: keyof typeof units) {
-  const result: Record<keyof typeof units, string> = {
+export type AllUnitsTypes = Record<string, string>;
+
+export function convertUnits(value: string, fromUnit: keyof typeof AllUnits): AllUnitsTypes {
+  const result: Record<keyof typeof AllUnits, string> = {
         wei: "",
         kwei: "",
         Kwei: "",
@@ -63,17 +65,18 @@ export function convertUnits(value: string, fromUnit: keyof typeof units) {
         tether: ""
     };
 
-    result[fromUnit as keyof typeof units] = value;
-    Object.entries(units).forEach(([unit, unitValue]) => {
+    result[fromUnit as keyof typeof AllUnits] = value;
+    Object.entries(AllUnits).forEach(([unit, unitValue]) => {
         if (unit !== fromUnit) {
             const dividedValue = new BigNumber(value, 10)
-                .multipliedBy(units[fromUnit])
+                .multipliedBy(AllUnits[fromUnit])
                 .decimalPlaces(0, BigNumber.ROUND_DOWN)
                 .div(unitValue)
                 .toString(10);
             
-            result[unit as keyof typeof units] = dividedValue;
+            result[unit as keyof typeof AllUnits] = dividedValue;
         }
       });
+
   return result;
 }
